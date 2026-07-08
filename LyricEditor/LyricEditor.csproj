@@ -3,12 +3,21 @@
         <TargetFramework>net10.0-windows</TargetFramework>
         <OutputType>WinExe</OutputType>
         <UseWPF>true</UseWPF>
+        <!-- WPF 会自动生成 Main()，为了让 Velopack 能在应用启动最早期运行，
+             这里改用 App.xaml.cs 中手写的 Main() 作为入口点。 -->
+        <StartupObject>LyricEditor.App</StartupObject>
     </PropertyGroup>
     <PropertyGroup>
         <ApplicationIcon>Icons\LrcMaker.ico</ApplicationIcon>
     </PropertyGroup>
     <ItemGroup>
         <Resource Include="Icons\**\*.*" />
+    </ItemGroup>
+    <ItemGroup>
+        <!-- WPF 默认会为 ApplicationDefinition 生成 Main()，与手写的 Main() 冲突，
+             改为 Page 后交由 App.xaml.cs 中的 Main() 作为唯一入口点。 -->
+        <ApplicationDefinition Remove="App.xaml" />
+        <Page Include="App.xaml" />
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="NAudio" Version="2.3.0" />
@@ -18,5 +27,6 @@
         <PackageReference Include="System.Text.Encoding.CodePages" Version="10.0.9" />
         <PackageReference Include="taglib" Version="2.1.0.0" />
         <PackageReference Include="Ude.NetStandard" Version="1.2.0" />
+        <PackageReference Include="Velopack" Version="1.2.0" />
     </ItemGroup>
 </Project>

@@ -6,6 +6,7 @@ using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -195,6 +196,25 @@ public partial class MainWindow : Window
             LrcManager.Instance.LoadFromFile(FileHelper.TempFileName);
             UpdateLrcView();
         }
+
+        _ = SilentCheckForUpdateAsync();
+    }
+
+    /// <summary>
+    /// 启动时静默检查一次更新，发现新版本时询问用户是否查看详情并更新；无更新或检查失败时不打扰用户。
+    /// </summary>
+    private async Task SilentCheckForUpdateAsync()
+    {
+        var info = await UpdateHelper.CheckForUpdatesAsync();
+        if (info == null)
+            return;
+
+        var res = MessageBox.Show(
+            $"发现新版本 {info.TargetFullRelease.Version}，是否现在查看详情并更新？",
+            "发现新版本",
+            MessageBoxButton.YesNo);
+        if (res == MessageBoxResult.Yes)
+            new AboutWindow(info) { Owner = this }.ShowDialog();
     }
 
     /// <summary>
@@ -675,10 +695,7 @@ public partial class MainWindow : Window
     /// </summary>
     private void Info_Click(object sender, RoutedEventArgs e)
     {
-        var info = string.Format(Properties.Resources.Info, AppVersion.DisplayVersion);
-        var res = MessageBox.Show(info, "相关信息", MessageBoxButton.OKCancel);
-        if (res == MessageBoxResult.OK)
-            Process.Start("https://zhuanlan.zhihu.com/p/32588196");
+        new AboutWindow { Owner = this }.ShowDialog();
     }
 
     #endregion
