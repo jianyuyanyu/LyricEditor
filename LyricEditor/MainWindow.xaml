@@ -61,14 +61,14 @@
         </Grid.RowDefinitions>
 
         <!-- 为上方控件添加一个阴影效果 -->
-        <Border Grid.ColumnSpan="3" Background="White">
+        <Border Grid.ColumnSpan="3" Background="{StaticResource Surface.Background}">
             <Border.Effect>
                 <DropShadowEffect ShadowDepth="0" />
             </Border.Effect>
         </Border>
 
         <!-- 菜单栏 -->
-        <Menu Margin="5" Background="White" FontFamily="{StaticResource LyricFont}">
+        <Menu Margin="5" Background="{StaticResource Surface.Background}" FontFamily="{StaticResource LyricFont}">
             <MenuItem Header="文件" Style="{StaticResource MenuItemHeaderStyle}">
                 <MenuItem.Icon>
                     <Image Source="Icons/MenuIcons/paper-plane.png" />
@@ -166,13 +166,13 @@
             <Grid>
                 <Border Height="{Binding RelativeSource={RelativeSource Self}, Path=Width}"
                         Margin="1"
-                        Background="#D3D3D3"
+                        Background="{StaticResource Cover.Background}"
                         CornerRadius="10">
                     <Border.Effect>
                         <DropShadowEffect ShadowDepth="0" />
                     </Border.Effect>
                     <Grid>
-                        <Border Name="CoverMask" Background="#D3D3D3" CornerRadius="10" />
+                        <Border Name="CoverMask" Background="{StaticResource Cover.Background}" CornerRadius="10" />
                         <Image Name="Cover"
                                RenderOptions.BitmapScalingMode="Fant"
                                Source="Icons/disc.png"
@@ -188,7 +188,7 @@
             <!-- 播放按钮 -->
             <Border Margin="0,10"
                     Padding="5"
-                    Background="WhiteSmoke"
+                    Background="{StaticResource PlayPanel.Background}"
                     CornerRadius="10">
                 <Border.Effect>
                     <DropShadowEffect x:Name="PlayButtonPanelDropShadow" ShadowDepth="0" />
@@ -275,7 +275,7 @@
                         </Grid.RowDefinitions>
                         <Grid.Resources>
                             <Style TargetType="{x:Type TextBlock}">
-                                <Setter Property="Foreground" Value="#FF919191" />
+                                <Setter Property="Foreground" Value="{StaticResource Slider.Label.Foreground}" />
                                 <Setter Property="VerticalAlignment" Value="Center" />
                                 <Setter Property="HorizontalAlignment" Value="Right" />
                                 <Setter Property="FontWeight" Value="Bold" />
@@ -316,14 +316,14 @@
         <Grid Grid.Column="1" Margin="5">
             <Grid.Resources>
                 <Style TargetType="TextBlock">
-                    <Setter Property="FontSize" Value="16" />
+                    <Setter Property="FontSize" Value="{StaticResource FontSize.Normal}" />
                     <Setter Property="VerticalAlignment" Value="Center" />
                 </Style>
             </Grid.Resources>
             <ProgressBar Name="TimeBackground"
                          d:Value="0.5"
-                         Background="White"
-                         Foreground="LightBlue"
+                         Background="{StaticResource Surface.Background}"
+                         Foreground="{StaticResource Progress.Foreground}"
                          Maximum="1" />
             <TextBlock Name="CurrentTimeText"
                        Margin="5,0,0,0"
@@ -339,11 +339,11 @@
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
                        d:Text="一条大河波浪宽"
-                       Foreground="#FF9E4848"
+                       Foreground="{StaticResource CurrentLyric.Foreground}"
                        TextDecorations="{x:Null}" />
             <Border Name="TimeClickBar"
                     Background="Transparent"
-                    BorderBrush="LightGray"
+                    BorderBrush="{StaticResource TimeBar.Border}"
                     BorderThickness="1"
                     MouseDown="TimeClickBar_MouseDown" />
         </Grid>
@@ -449,7 +449,7 @@
         <Border Grid.Row="1"
                 Grid.Column="1"
                 Margin="5"
-                Background="White">
+                Background="{StaticResource Surface.Background}">
             <Border.Effect>
                 <DropShadowEffect x:Name="UserControlDropShadow" BlurRadius="0" ShadowDepth="0" />
             </Border.Effect>
@@ -458,7 +458,7 @@
                      Grid.Row="1"
                      Grid.Column="1"
                      Margin="5"
-                     Background="White">
+                     Background="{StaticResource Surface.Background}">
             <UserControl.Triggers>
                 <EventTrigger RoutedEvent="UserControl.MouseEnter">
                     <EventTrigger.Actions>

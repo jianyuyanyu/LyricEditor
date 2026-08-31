@@ -13,10 +13,10 @@
         mc:Ignorable="d">
     <Window.Resources>
         <Style TargetType="{x:Type Button}">
-            <Setter Property="Background" Value="White" />
+            <Setter Property="Background" Value="{StaticResource Surface.Background}" />
             <Setter Property="Padding" Value="10,4" />
             <Setter Property="BorderThickness" Value="1" />
-            <Setter Property="BorderBrush" Value="#CCCCCC" />
+            <Setter Property="BorderBrush" Value="{StaticResource About.Button.Border}" />
             <Setter Property="Cursor" Value="Hand" />
         </Style>
     </Window.Resources>
@@ -30,12 +30,12 @@
                    RenderOptions.BitmapScalingMode="Fant"
                    Source="pack://application:,,,/Icons/LrcMaker.ico" />
             <StackPanel VerticalAlignment="Center">
-                <TextBlock FontSize="20" FontWeight="Bold" Text="LyricEditor" />
-                <TextBlock Name="VersionText" Foreground="Gray" />
+                <TextBlock FontSize="{StaticResource FontSize.Title}" FontWeight="Bold" Text="LyricEditor" />
+                <TextBlock Name="VersionText" Foreground="{StaticResource Text.Secondary.Foreground}" />
             </StackPanel>
         </StackPanel>
 
-        <Border Margin="0,0,0,10" BorderBrush="#DDDDDD" BorderThickness="0,1,0,0" />
+        <Border Margin="0,0,0,10" BorderBrush="{StaticResource About.Divider.Border}" BorderThickness="0,1,0,0" />
 
         <!-- 说明文字（联系方式 / 更新日志） -->
         <ScrollViewer Margin="0,0,0,10"
@@ -53,7 +53,7 @@
             <Hyperlink NavigateUri="mailto:suomikoto@outlook.com" RequestNavigate="Hyperlink_RequestNavigate">反馈邮件</Hyperlink>
         </TextBlock>
 
-        <Border Margin="0,0,0,10" BorderBrush="#DDDDDD" BorderThickness="0,1,0,0" />
+        <Border Margin="0,0,0,10" BorderBrush="{StaticResource About.Divider.Border}" BorderThickness="0,1,0,0" />
 
         <!-- 更新检查 -->
         <Grid Margin="0,0,0,15">
@@ -63,7 +63,7 @@
             </Grid.ColumnDefinitions>
             <TextBlock Name="UpdateStatusText"
                        VerticalAlignment="Center"
-                       Foreground="Gray"
+                       Foreground="{StaticResource Text.Secondary.Foreground}"
                        TextWrapping="Wrap" />
             <Button Name="UpdateButton"
                     Grid.Column="1"

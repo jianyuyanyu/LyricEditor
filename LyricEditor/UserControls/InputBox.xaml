@@ -8,7 +8,7 @@
         Width="250"
         SizeToContent="Height"
         WindowStartupLocation="CenterOwner"
-        FontSize="16"
+        FontSize="{StaticResource FontSize.Normal}"
         WindowStyle="ToolWindow"
         mc:Ignorable="d">
     <StackPanel>
@@ -26,7 +26,7 @@
         <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
             <StackPanel.Resources>
                 <Style TargetType="{x:Type Button}">
-                    <Setter Property="Background" Value="White" />
+                    <Setter Property="Background" Value="{StaticResource Surface.Background}" />
                     <Setter Property="Margin" Value="5" />
                     <Setter Property="Width" Value="25" />
                     <Setter Property="Height" Value="25" />

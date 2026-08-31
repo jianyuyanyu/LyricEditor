@@ -21,4 +21,20 @@
     <SolidColorBrush x:Key="SliderThumb.Track.Border" Color="#FFD6D6D6" />
     <SolidColorBrush x:Key="SliderThumb.Track.Background" Color="#FFE7EAEA" />
 
+    <!-- 界面通用配色 -->
+    <SolidColorBrush x:Key="Surface.Background" Color="White" />
+    <SolidColorBrush x:Key="Cover.Background" Color="#D3D3D3" />
+    <SolidColorBrush x:Key="PlayPanel.Background" Color="WhiteSmoke" />
+
+    <SolidColorBrush x:Key="Progress.Foreground" Color="LightBlue" />
+    <SolidColorBrush x:Key="CurrentLyric.Foreground" Color="#FF9E4848" />
+    <SolidColorBrush x:Key="Slider.Label.Foreground" Color="#FF919191" />
+    <SolidColorBrush x:Key="Text.Secondary.Foreground" Color="Gray" />
+
+    <SolidColorBrush x:Key="TimeBar.Border" Color="LightGray" />
+    <SolidColorBrush x:Key="LrcLine.Separator.Foreground" Color="#DDDDDD" />
+    <SolidColorBrush x:Key="Control.Border" Color="#FFABADB3" />
+    <SolidColorBrush x:Key="About.Button.Border" Color="#CCCCCC" />
+    <SolidColorBrush x:Key="About.Divider.Border" Color="#DDDDDD" />
+
 </ResourceDictionary>

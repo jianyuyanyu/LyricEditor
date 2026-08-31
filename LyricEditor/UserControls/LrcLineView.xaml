@@ -18,7 +18,7 @@
                   Margin="0"
                   x:FieldModifier="public"
                   BorderThickness="1,1,1,0"
-                  FontSize="16"
+                  FontSize="{StaticResource FontSize.Normal}"
                   SelectionMode="Single"
                   MouseDoubleClick="LrcLinePanel_MouseDoubleClick"
                   KeyUp="LrcLinePanel_KeyUp"
@@ -36,7 +36,7 @@
                         <TextBlock Grid.Column="1"
                                    HorizontalAlignment="Center"
                                    Text="|"
-                                   Foreground="#ddd" />
+                                   Foreground="{StaticResource LrcLine.Separator.Foreground}" />
                         <TextBlock Name="LrcTextBlock" Grid.Column="2" Text="{Binding LrcText}" />
                     </Grid>
                 </DataTemplate>
@@ -56,7 +56,7 @@
         <DockPanel Grid.Row="1">
             <DockPanel.Resources>
                 <Style TargetType="TextBox">
-                    <Setter Property="FontSize" Value="16" />
+                    <Setter Property="FontSize" Value="{StaticResource FontSize.Normal}" />
                     <Setter Property="VerticalContentAlignment" Value="Center" />
                     <Setter Property="FontFamily" Value="{StaticResource LyricFont}" />
                 </Style>

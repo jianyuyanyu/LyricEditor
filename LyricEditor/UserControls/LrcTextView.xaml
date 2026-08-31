@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:LyricEditor.UserControls"
              xmlns:conv="clr-namespace:LyricEditor.Converters"
              mc:Ignorable="d" 
-             FontSize="16"
+             FontSize="{StaticResource FontSize.Normal}"
              FontFamily="{StaticResource LyricFont}"
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
@@ -25,8 +25,8 @@
                  VerticalScrollBarVisibility="Auto">
         </TextBox>
 
-        <ToggleButton Name="ToolToggle" Background="White" BorderBrush="#FFABADB3" Grid.Row="1" IsChecked="False"/>
-        <Border Grid.Row="2" BorderThickness="0" BorderBrush="#FFABADB3" Background="White">
+        <ToggleButton Name="ToolToggle" Background="{StaticResource Surface.Background}" BorderBrush="{StaticResource Control.Border}" Grid.Row="1" IsChecked="False"/>
+        <Border Grid.Row="2" BorderThickness="0" BorderBrush="{StaticResource Control.Border}" Background="{StaticResource Surface.Background}">
             <Grid Visibility="{Binding ElementName=ToolToggle,Path=IsChecked,Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="90"/>
@@ -66,7 +66,7 @@
                             </TextBlock>
                         </CheckBox.ToolTip>
                     </CheckBox>
-                    <Button HorizontalAlignment="Right" Background="White"
+                    <Button HorizontalAlignment="Right" Background="{StaticResource Surface.Background}"
                         Width="50" Height="25" Margin="5"
                         Click="ReplaceButton_Click">
                         替换
