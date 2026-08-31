@@ -20,6 +20,12 @@ public sealed class AppSettings
     /// <summary>时间取近似值</summary>
     public bool ApproxTime { get; set; } = false;
 
+    /// <summary>界面字体</summary>
+    public string UIFont { get; set; } = "Microsoft YaHei UI";
+
+    /// <summary>歌词字体</summary>
+    public string LyricFont { get; set; } = "Microsoft YaHei UI";
+
     /// <summary>时间偏差（毫秒）</summary>
     public double TimeOffset { get; set; } = 150;
 

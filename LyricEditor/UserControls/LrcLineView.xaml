@@ -22,7 +22,7 @@
                   SelectionMode="Single"
                   MouseDoubleClick="LrcLinePanel_MouseDoubleClick"
                   KeyUp="LrcLinePanel_KeyUp"
-                  FontFamily="{StaticResource LyricFont}"
+                  FontFamily="{DynamicResource LyricFont}"
                   SelectionChanged="LrcLinePanel_SelectionChanged">
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -58,7 +58,7 @@
                 <Style TargetType="TextBox">
                     <Setter Property="FontSize" Value="{StaticResource FontSize.Normal}" />
                     <Setter Property="VerticalContentAlignment" Value="Center" />
-                    <Setter Property="FontFamily" Value="{StaticResource LyricFont}" />
+                    <Setter Property="FontFamily" Value="{DynamicResource LyricFont}" />
                 </Style>
             </DockPanel.Resources>
             <TextBox Name="CurrentTimeText"

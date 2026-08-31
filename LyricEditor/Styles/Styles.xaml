@@ -7,12 +7,15 @@
         <ResourceDictionary Source="Metrics.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <Style TargetType="{x:Type Control}">
-        <Setter Property="FontFamily" Value="Microsoft YaHei UI" />
-    </Style>
+    <!-- 界面字体（可在首选项中修改，运行时通过 DynamicResource 生效） -->
+    <FontFamily x:Key="UIFont">Microsoft YaHei UI</FontFamily>
 
-    <!-- 歌词字体 -->
-    <FontFamily x:Key="LyricFont">Microsoft Yahei UI</FontFamily>
+    <!-- 歌词字体（可在首选项中修改，运行时通过 DynamicResource 生效） -->
+    <FontFamily x:Key="LyricFont">Microsoft YaHei UI</FontFamily>
+
+    <Style TargetType="{x:Type Control}">
+        <Setter Property="FontFamily" Value="{DynamicResource UIFont}" />
+    </Style>
 
     <!-- 左上菜单栏标题按钮的样式 -->
     <Style x:Key="MenuItemHeaderStyle" TargetType="MenuItem">

@@ -4,6 +4,7 @@ using LyricEditor.Utils;
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -189,6 +190,9 @@ public partial class MainWindow : Window
         ShortShift.Text = Settings.ShortTimeShift.ToString();
         LongShift.Text = Settings.LongTimeShift.ToString();
 
+        // 界面字体、歌词字体
+        InitializeFontSettings();
+
         #endregion
 
         // 打开缓存文件
@@ -313,6 +317,62 @@ public partial class MainWindow : Window
     private void ExportLyricToClipboard_Click(object sender, RoutedEventArgs e)
     {
         Clipboard.SetText(LrcManager.Instance.ToString());
+    }
+
+    /// <summary>
+    /// 初始化字体下拉框：填充系统已安装字体，应用并选中当前配置
+    /// </summary>
+    private void InitializeFontSettings()
+    {
+        var fonts = Fonts.SystemFontFamilies
+            .Select(f => f.Source)
+            .Distinct()
+            .OrderBy(s => s, StringComparer.CurrentCultureIgnoreCase)
+            .ToList();
+
+        UIFontComboBox.ItemsSource = fonts;
+        LyricFontComboBox.ItemsSource = fonts;
+
+        // 应用配置中的字体（下拉框中不存在时回退到默认）
+        ApplyUIFont(Settings.UIFont);
+        ApplyLyricFont(Settings.LyricFont);
+
+        UIFontComboBox.SelectedItem = fonts.Contains(Settings.UIFont) ? Settings.UIFont : null;
+        LyricFontComboBox.SelectedItem = fonts.Contains(Settings.LyricFont) ? Settings.LyricFont : null;
+    }
+
+    /// <summary>
+    /// 应用界面字体
+    /// </summary>
+    private void ApplyUIFont(string font)
+    {
+        if (string.IsNullOrWhiteSpace(font))
+            return;
+        Application.Current.Resources["UIFont"] = new FontFamily(font);
+        Settings.UIFont = font;
+    }
+
+    /// <summary>
+    /// 应用歌词字体
+    /// </summary>
+    private void ApplyLyricFont(string font)
+    {
+        if (string.IsNullOrWhiteSpace(font))
+            return;
+        Application.Current.Resources["LyricFont"] = new FontFamily(font);
+        Settings.LyricFont = font;
+    }
+
+    private void UIFontComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (UIFontComboBox.SelectedItem is string font)
+            ApplyUIFont(font);
+    }
+
+    private void LyricFontComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (LyricFontComboBox.SelectedItem is string font)
+            ApplyLyricFont(font);
     }
 
     /// <summary>
