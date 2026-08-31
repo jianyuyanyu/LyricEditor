@@ -22,7 +22,6 @@
     <ItemGroup>
         <PackageReference Include="NAudio" Version="2.3.0" />
         <PackageReference Include="SoundTouch.Net.NAudioSupport.Core" Version="2.3.2" />
-        <PackageReference Include="System.Configuration.ConfigurationManager" Version="10.0.9" />
         <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
         <PackageReference Include="System.Text.Encoding.CodePages" Version="10.0.9" />
         <PackageReference Include="taglib" Version="2.1.0.0" />

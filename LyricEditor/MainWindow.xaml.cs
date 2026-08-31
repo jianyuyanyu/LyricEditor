@@ -2,7 +2,6 @@
 using LyricEditor.UserControls;
 using LyricEditor.Utils;
 using System;
-using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
@@ -43,6 +42,11 @@ public partial class MainWindow : Window
     }
 
     #region 成员变量
+
+    /// <summary>
+    /// 应用配置（存于 %AppData%\LyricEditor\settings.json）
+    /// </summary>
+    private readonly AppSettings Settings = AppSettings.Load();
 
     private LrcPanelType CurrentLrcPanel = LrcPanelType.LrcLinePanel;
 
@@ -174,19 +178,16 @@ public partial class MainWindow : Window
         #region 读取配置
 
         // 退出时自动缓存
-        AutoSaveTemp.IsChecked = bool.Parse(ConfigurationManager.AppSettings["AutoSaveTemp"]);
+        AutoSaveTemp.IsChecked = Settings.AutoSaveTemp;
         // 导出 UTF-8
-        ExportUTF8.IsChecked = bool.Parse(ConfigurationManager.AppSettings["ExportUTF8"]);
+        ExportUTF8.IsChecked = Settings.ExportUTF8;
         // 时间取近似值
-        LrcLinePanel.ApproxTime =
-            LrcLine.IsShort =
-            ApproxTime.IsChecked =
-                bool.Parse(ConfigurationManager.AppSettings["ApproxTime"]);
+        LrcLinePanel.ApproxTime = LrcLine.IsShort = ApproxTime.IsChecked = Settings.ApproxTime;
         // 时间偏差（改变 Text 会触发 TextChanged 事件，下同）
-        TimeOffset.Text = ConfigurationManager.AppSettings["TimeOffset"];
+        TimeOffset.Text = Settings.TimeOffset.ToString();
         // 快进快退
-        ShortShift.Text = ConfigurationManager.AppSettings["ShortTimeShift"];
-        LongShift.Text = ConfigurationManager.AppSettings["LongTimeShift"];
+        ShortShift.Text = Settings.ShortTimeShift.ToString();
+        LongShift.Text = Settings.LongTimeShift.ToString();
 
         #endregion
 
@@ -226,21 +227,13 @@ public partial class MainWindow : Window
         MediaPlayer.Dispose();
 
         // 保存配置文件
-        Configuration cfa = ConfigurationManager.OpenExeConfiguration(
-            ConfigurationUserLevel.None
-        );
-
-        cfa.AppSettings.Settings["AutoSaveTemp"].Value = AutoSaveTemp.IsChecked.ToString();
-        cfa.AppSettings.Settings["ExportUTF8"].Value = ExportUTF8.IsChecked.ToString();
-        cfa.AppSettings.Settings["ApproxTime"].Value = LrcLinePanel.ApproxTime.ToString();
-        cfa.AppSettings.Settings["TimeOffset"].Value = (
-            -LrcLinePanel.TimeOffset.TotalMilliseconds
-        ).ToString();
-        cfa.AppSettings.Settings["ShortTimeShift"].Value =
-            ShortTimeShift.TotalSeconds.ToString();
-        cfa.AppSettings.Settings["LongTimeShift"].Value = LongTimeShift.TotalSeconds.ToString();
-
-        cfa.Save();
+        Settings.AutoSaveTemp = AutoSaveTemp.IsChecked;
+        Settings.ExportUTF8 = ExportUTF8.IsChecked;
+        Settings.ApproxTime = LrcLinePanel.ApproxTime;
+        Settings.TimeOffset = -LrcLinePanel.TimeOffset.TotalMilliseconds;
+        Settings.ShortTimeShift = ShortTimeShift.TotalSeconds;
+        Settings.LongTimeShift = LongTimeShift.TotalSeconds;
+        Settings.Save();
 
         // 保存缓存
         if (AutoSaveTemp.IsChecked)
